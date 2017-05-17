@@ -16,17 +16,24 @@ class CellDefinition: UITableViewCell {
     
 }
 
-class ViewController: UITableViewController {
 
 
+class ViewController: UITableViewController, UISearchBarDelegate {
+
+//    let searchController = UISearchController(searchResultsController: nil)
     
+    @IBOutlet weak var searchBar: UISearchBar!
     public var DBArr = [[String]]()
     var romanceArr = [[String]]()
     var historyArr = [[String]]()
     var fantasyArr = [[String]]()
+    var filteredBooks = [[String]]()
+    var searchIsActive : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         // retrieving core data
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -96,7 +103,7 @@ class ViewController: UITableViewController {
             // process error
         }
         // category arrays
-        
+        print(DBArr.count)
         let counter = DBArr.count - 1
         for index in 0...counter {
             let tempString = DBArr[index][2]
@@ -137,40 +144,60 @@ class ViewController: UITableViewController {
         print("fantasy count: \(fantasyArr.count)")
     }
     
-    
+
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 3
+        if searchIsActive == true {
+            return filteredBooks.count
+        } else {
+            return 3
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 3
+        if searchIsActive == true {
+            return 1
+        }
+        else {
+            return 3
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch (section) {
-        case 0:
-            return "Romance"
-        case 1:
-            return "Historical / Other Fiction"
-        case 2:
-            return "Fantasy"
-        default:
-            return "other"
+        if searchIsActive == true {
+            return "Search Results"
+        } else {
+        
+            switch (section) {
+            case 0:
+                return "Romance"
+            case 1:
+                return "Historical / Other Fiction"
+            case 2:
+                return "Fantasy"
+            default:
+                return "other"
+            }
+        
         }
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellDefinition
         
-        
+        if searchIsActive == true {
+            let title = filteredBooks[indexPath.row][0]
+            let author = filteredBooks[indexPath.row][1]
+            let imageName = filteredBooks[indexPath.row][3]
+            cell.titleLabel?.text = title
+            cell.authorLabel?.text = author
+            cell.imageView?.image = UIImage(named: imageName)
+            cell.imageView?.contentMode = .scaleAspectFit
+        } else {
         switch (indexPath.section) {
         case 0:
             let title = romanceArr[indexPath.row][0]
@@ -200,12 +227,67 @@ class ViewController: UITableViewController {
         default:
             cell.textLabel?.text = "Other"
         }
-        
+        }
         return cell
         
     }
     
     
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchIsActive = true
+        print("search is active")
+    }
+    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        searchIsActive = false
+//    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchIsActive = false
+        print("search is inactive")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchIsActive = false
+        print("search is inactive")
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let keyword = searchText.lowercased()
+        for i in 0...(DBArr.count - 1)
+        {
+            let title = DBArr[i][0]
+            let author = DBArr[i][1]
+            if title.lowercased().range(of: keyword) != nil
+            {
+                var tempArr = [String]()
+                for tempIndex in 0...9 {
+                    tempArr.append(DBArr[i][tempIndex])
+                }
+                filteredBooks.append(tempArr)
+            }
+            if author.lowercased().range(of: keyword) != nil
+            {
+                var tempArr = [String]()
+                for tempIndex in 0...9 {
+                    tempArr.append(DBArr[i][tempIndex])
+                }
+                filteredBooks.append(tempArr)
+            }
+        }
+        if filteredBooks.count == 0
+        {
+            searchIsActive = false
+            print("search is inactive")
+        }
+        else {
+            searchIsActive = true
+            print("search is active")
+        }
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
