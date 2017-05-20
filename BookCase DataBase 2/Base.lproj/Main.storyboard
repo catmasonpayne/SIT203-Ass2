@@ -21,18 +21,26 @@
                         <color key="sectionIndexColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="6NR-eD-z9i">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xe-ep-lh8">
-                                    <rect key="frame" x="277" y="11" width="82" height="30"/>
+                                    <rect key="frame" x="250" y="15" width="117" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Search &gt;&gt;"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                    <state key="normal" title="Search &gt;&gt;">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="searchButton:" destination="hp0-fM-sjs" eventType="touchUpInside" id="Z6g-tU-nG8"/>
-                                        <segue destination="hKB-x2-6Ae" kind="show" identifier="ToSearchPage" animates="NO" id="6n3-66-uFk"/>
+                                        <segue destination="hKB-x2-6Ae" kind="show" identifier="ToSearchPage" customClass="SegueFromLeft" customModule="BookCase_DataBase_2" customModuleProvider="target" id="6n3-66-uFk"/>
                                     </connections>
                                 </button>
                             </subviews>
+                            <color key="backgroundColor" red="0.55686274509803924" green="0.44313725490196076" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="9QZ-Wa-rfN">
+                            <rect key="frame" x="0.0" y="198" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
@@ -40,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="81" width="375" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YSZ-Vh-Mdg" id="b2y-cE-a9P">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-ST-Ecf">
@@ -59,6 +67,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.76000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="authorLabel" destination="ebn-ue-5oK" id="Tbh-s1-a3O"/>
@@ -71,7 +80,6 @@
                             <outlet property="delegate" destination="hp0-fM-sjs" id="xd3-ZN-2Ow"/>
                         </connections>
                     </tableView>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kKX-9H-kDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,26 +89,24 @@
         <scene sceneID="IhJ-mf-mG4">
             <objects>
                 <tableViewController id="hKB-x2-6Ae" customClass="SearchTableViewController" customModule="BookCase_DataBase_2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MyU-gf-v5n">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="MyU-gf-v5n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="ukx-pT-sqS">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="UPt-nx-vbW">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="hKB-x2-6Ae" id="npb-qP-wIg"/>
-                            </connections>
-                        </searchBar>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.55686274509803924" green="0.44313725490196076" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" id="bvw-Kr-5Oa">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="100" id="bvw-Kr-5Oa">
+                                <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bvw-Kr-5Oa" id="HbJ-Fm-O6K">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.76000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -108,14 +114,32 @@
                             <outlet property="delegate" destination="hKB-x2-6Ae" id="rcd-r1-o3o"/>
                         </connections>
                     </tableView>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="headerView" destination="UPt-nx-vbW" id="JZg-in-rI5"/>
                         <outlet property="tableView" destination="MyU-gf-v5n" id="wbo-rn-ZOs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHT-Cp-4md" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4035" y="36"/>
+            <point key="canvasLocation" x="4034.4000000000001" y="35.532233883058474"/>
+        </scene>
+        <!--Display Book View Controller-->
+        <scene sceneID="xzZ-Ut-lWg">
+            <objects>
+                <viewController id="eEk-0T-ZwD" customClass="DisplayBookViewController" customModule="BookCase_DataBase_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qfv-Ge-vtQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="phm-h0-UjY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Oy-Gz-RIq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2yW-xs-1AO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4034" y="704"/>
         </scene>
     </scenes>
 </document>

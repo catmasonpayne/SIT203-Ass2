@@ -9,22 +9,36 @@
 import UIKit
 import CoreData
 
-class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 
+    @IBOutlet weak var headerView: UIView!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet var tableView: UITableView!
     
     var DBArr = [[String]]()
+    var filteredBooks = [[String]]()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         let dataimport = GetDatabaseData()
         
         DBArr = dataimport.importDatabase()
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BookCell")
-        self.tableView.reloadData()
+        filteredBooks = DBArr
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        // tableView.tableHeaderView = searchController.searchBar
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,64 +51,54 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       let counter = DBArr.count
+       let counter = filteredBooks.count
         return counter
     }
 
+   
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
-        cell.textLabel?.text = DBArr[indexPath.row][0]
-        
+        cell.textLabel?.text = filteredBooks[indexPath.row][0]
+        cell.detailTextLabel?.text = filteredBooks[indexPath.row][1]
+        cell.imageView?.image = UIImage(named: filteredBooks[indexPath.row][3])
 
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Row \(indexPath.row) selected")
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if searchBar.text! == "" {
+            filteredBooks = DBArr
+        } else {
+            filteredBooks = DBArr.filter { $0[0].lowercased().contains(searchController.searchBar.text!.lowercased()) }
+        }
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    // tidying up
+    override var prefersStatusBarHidden: Bool {
+        return true;
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
-    */
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let value =  UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
 }

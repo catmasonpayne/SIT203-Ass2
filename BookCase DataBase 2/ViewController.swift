@@ -37,74 +37,6 @@ class ViewController: UITableViewController {
         
         DBArr = dataimport.importDatabase()
         
-        
-//        // retrieving core data
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        
-//        let context = appDelegate.persistentContainer.viewContext
-//        
-//        let request =  NSFetchRequest<NSFetchRequestResult>(entityName: "Books")
-//        
-//        request.returnsObjectsAsFaults = false
-//        
-//        do
-//        {
-//            let results = try context.fetch(request)
-//            if results.count > 0
-//            {
-//                for result in results as! [NSManagedObject]
-//                {
-//                    //put into array
-//                    var tempArr = [String]()
-//                    if let title = result.value(forKey: "title") as? String
-//                    {
-//                        tempArr.append(title)
-//                    }
-//                    if let author = result.value(forKey: "author") as? String
-//                    {
-//                        tempArr.append(author)
-//                    }
-//                    if let genre = result.value(forKey: "genre") as? String
-//                    {
-//                        tempArr.append(genre)
-//                    }
-//                    if let image = result.value(forKey: "image") as? String
-//                    {
-//                        tempArr.append(image)
-//                    }
-//                    if let isbn = result.value(forKey: "isbn") as? String
-//                    {
-//                        tempArr.append(isbn)
-//                    }
-//                    if let movie = result.value(forKey: "movie") as? String
-//                    {
-//                        tempArr.append(movie)
-//                    }
-//                    if let publisher = result.value(forKey: "publisher") as? String
-//                    {
-//                        tempArr.append(publisher)
-//                    }
-//                    if let rating = result.value(forKey: "rating") as? String
-//                    {
-//                        tempArr.append(rating)
-//                    }
-//                    if let series = result.value(forKey: "series") as? String
-//                    {
-//                        tempArr.append(series)
-//                    }
-//                    if let summary = result.value(forKey: "summary") as? String
-//                    {
-//                        tempArr.append(summary)
-//                    }
-//                    DBArr.append(tempArr)
-//                }
-//                
-//            }
-//        }
-//        catch
-//        {
-//            // process error
-//        }
         // category arrays
         print(DBArr.count)
         let counter = DBArr.count - 1
@@ -210,6 +142,7 @@ class ViewController: UITableViewController {
             cell.textLabel?.text = "Other"
         }
         
+        
         return cell
         
     }
@@ -231,5 +164,25 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // tidying up
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let value =  UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
 }
 
