@@ -1,22 +1,14 @@
 //
-//  DisplayBookViewController.swift
+//  ViewBookViewController.swift
 //  BookCase DataBase 2
 //
-//  Created by Cat Mason-Payne on 20/05/2017.
+//  Created by Cat Mason-Payne on 21/05/2017.
 //  Copyright © 2017 Deakin. All rights reserved.
 //
 
 import UIKit
 
-class BookCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var bookImageView: UIImageView!
-    @IBOutlet weak var titleLabelCell: UILabel!
-    @IBOutlet weak var authorLabelCell: UILabel!
-    
-}
-
-class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewBookViewController: UIViewController {
 
     var DBArr = [[String]]()
     var similarBooks = [[String]]()
@@ -30,7 +22,6 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var isbnLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
-   
     @IBOutlet weak var seriesLabel: UILabel!
     @IBOutlet weak var movieLabel: UILabel!
     @IBOutlet weak var seriesLine: UILabel!
@@ -116,21 +107,10 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "" {
-//            let displayBookVC = segue.destination as? DisplayBookViewController
-//            
-//            guard let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) else {
-//                return
-//            }
-//                displayBookVC?.bookNameFromPrev = similarBooks[indexPath.row][0]
-//                displayBookVC?.bookAuthorFromPrev = similarBooks[indexPath.row][1]
-//        }
-//    }
-
+    
     // tidying up
     override var prefersStatusBarHidden: Bool {
         return true;
@@ -150,6 +130,5 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
         UIDevice.current.setValue(value, forKey: "orientation")
         UIViewController.attemptRotationToDeviceOrientation()
     }
-
 
 }

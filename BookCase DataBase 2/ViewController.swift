@@ -147,10 +147,34 @@ class ViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Row \(indexPath.row) selected")
+        print("section \(indexPath.section) selected")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToSearchPage" {
-//            let searchVC = segue.destination as? SearchTableViewController
-//            
+        
+        if segue.identifier == "ShowBook" {
+            let displayBookVC = segue.destination as? DisplayBookViewController
+            
+            guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
+                return
+            }
+            switch (indexPath.section) {
+            case 0:
+                displayBookVC?.bookNameFromPrev = romanceArr[indexPath.row][0]
+                displayBookVC?.bookAuthorFromPrev = romanceArr[indexPath.row][1]
+            case 1:
+                displayBookVC?.bookNameFromPrev = historyArr[indexPath.row][0]
+                displayBookVC?.bookAuthorFromPrev = historyArr[indexPath.row][1]
+                
+            case 2:
+                displayBookVC?.bookNameFromPrev = fantasyArr[indexPath.row][0]
+                displayBookVC?.bookAuthorFromPrev = fantasyArr[indexPath.row][1]
+                
+            default:
+                cell.textLabel?.text = "Other"
+            }
         }
     }
     

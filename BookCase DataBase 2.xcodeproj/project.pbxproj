@@ -20,6 +20,7 @@
 		97DE37201ECF0D7A004D4760 /* getDatabaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE371F1ECF0D7A004D4760 /* getDatabaseData.swift */; };
 		97DE37221ED0044D004D4760 /* DisplayBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE37211ED0044D004D4760 /* DisplayBookViewController.swift */; };
 		97DE37241ED00D0B004D4760 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE37231ED00D0B004D4760 /* SegueFromLeft.swift */; };
+		97DE37261ED16D25004D4760 /* ViewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE37251ED16D25004D4760 /* ViewBookViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		97DE371F1ECF0D7A004D4760 /* getDatabaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getDatabaseData.swift; sourceTree = "<group>"; };
 		97DE37211ED0044D004D4760 /* DisplayBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayBookViewController.swift; sourceTree = "<group>"; };
 		97DE37231ED00D0B004D4760 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		97DE37251ED16D25004D4760 /* ViewBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBookViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				97DE371F1ECF0D7A004D4760 /* getDatabaseData.swift */,
 				97DE37211ED0044D004D4760 /* DisplayBookViewController.swift */,
 				97DE37231ED00D0B004D4760 /* SegueFromLeft.swift */,
+				97DE37251ED16D25004D4760 /* ViewBookViewController.swift */,
 			);
 			path = "BookCase DataBase 2";
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				97DE37221ED0044D004D4760 /* DisplayBookViewController.swift in Sources */,
 				97DE37201ECF0D7A004D4760 /* getDatabaseData.swift in Sources */,
 				9756DF301EC92E5A009FE1B1 /* ViewController.swift in Sources */,
+				97DE37261ED16D25004D4760 /* ViewBookViewController.swift in Sources */,
 				9756DF611EC96220009FE1B1 /* AddToDataBaseCode.swift in Sources */,
 				97DE37241ED00D0B004D4760 /* SegueFromLeft.swift in Sources */,
 				9756DF2E1EC92E5A009FE1B1 /* AppDelegate.swift in Sources */,
