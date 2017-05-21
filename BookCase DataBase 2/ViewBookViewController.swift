@@ -8,7 +8,16 @@
 
 import UIKit
 
-class ViewBookViewController: UIViewController {
+class SimilarBookCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var titleLabelCell: UILabel!
+    @IBOutlet weak var authorLabelCell: UILabel!
+    
+}
+
+
+class ViewBookViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var DBArr = [[String]]()
     var similarBooks = [[String]]()
@@ -27,6 +36,7 @@ class ViewBookViewController: UIViewController {
     @IBOutlet weak var seriesLine: UILabel!
     @IBOutlet weak var movieLine: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var bookNameFromPrev = String()
     var bookAuthorFromPrev = String()
@@ -69,6 +79,8 @@ class ViewBookViewController: UIViewController {
             
         }
         createSimilarBookArray()
+        print(createSimilarBookArray())
+        print("just printed the array yo")
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,7 +109,7 @@ class ViewBookViewController: UIViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SimilarCell", for: indexPath as IndexPath) as! BookCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SimilarCell2", for: indexPath as IndexPath) as! SimilarBookCollectionViewCell
         
         cell.bookImageView.image = UIImage(named: similarBooks[indexPath.item][3])
         cell.titleLabelCell.text = similarBooks[indexPath.item][0]
@@ -107,7 +119,21 @@ class ViewBookViewController: UIViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("you have selected from left2")
+        print(indexPath.item)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AnotherBookRight" {
+            print("preping for segue right2")
+            let displayBookVC = segue.destination as? DisplayBookViewController
+            
+            guard let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) else {
+                return
+            }
+            displayBookVC?.bookNameFromPrev = similarBooks[indexPath.item][0]
+            displayBookVC?.bookAuthorFromPrev = similarBooks[indexPath.item][1]
+        }
     }
     
     

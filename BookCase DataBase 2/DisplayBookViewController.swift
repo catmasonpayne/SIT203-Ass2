@@ -36,6 +36,9 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var seriesLine: UILabel!
     @IBOutlet weak var movieLine: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     
     var bookNameFromPrev = String()
     var bookAuthorFromPrev = String()
@@ -116,20 +119,23 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("you selected something1")
         print(indexPath.item)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "" {
-//            let displayBookVC = segue.destination as? DisplayBookViewController
-//            
-//            guard let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) else {
-//                return
-//            }
-//                displayBookVC?.bookNameFromPrev = similarBooks[indexPath.row][0]
-//                displayBookVC?.bookAuthorFromPrev = similarBooks[indexPath.row][1]
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AnotherBookLeft" {
+            let viewBookVC = segue.destination as? ViewBookViewController
+            print("preping for segue to left1")
+            guard let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) else {
+                return
+            }
+            print("selected cell has been grabbed")
+            print("you selected \(similarBooks[indexPath.item][0])")
+            viewBookVC?.bookNameFromPrev = similarBooks[indexPath.item][0]
+            viewBookVC?.bookAuthorFromPrev = similarBooks[indexPath.item][1]
+        }
+    }
 
     // tidying up
     override var prefersStatusBarHidden: Bool {
