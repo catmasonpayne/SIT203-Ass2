@@ -85,7 +85,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowBook" {
+        if segue.identifier == "FromSearchToShow" {
             let displayBookVC = segue.destination as? DisplayBookViewController
             // Determining what data to send to the DisplayBookViewController
             guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
