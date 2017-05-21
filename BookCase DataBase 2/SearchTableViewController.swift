@@ -13,7 +13,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var headerView: UIView!
     
-    @IBOutlet weak var searchBar: UISearchBar!
+   // @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet var tableView: UITableView!
     
@@ -34,7 +34,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        // tableView.tableHeaderView = searchController.searchBar
+        tableView.tableHeaderView = searchController.searchBar
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
@@ -72,9 +72,8 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
-    
     func updateSearchResults(for searchController: UISearchController) {
-        if searchBar.text! == "" {
+        if searchController.searchBar.text! == "" {
             filteredBooks = DBArr
         } else {
             filteredBooks = DBArr.filter { $0[0].lowercased().contains(searchController.searchBar.text!.lowercased()) }

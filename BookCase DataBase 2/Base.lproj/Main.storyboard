@@ -92,17 +92,17 @@
             <objects>
                 <tableViewController id="hKB-x2-6Ae" customClass="SearchTableViewController" customModule="BookCase_DataBase_2" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="MyU-gf-v5n">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="UPt-nx-vbW">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="227"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.55686274509803924" green="0.44313725490196076" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="100" id="bvw-Kr-5Oa">
-                                <rect key="frame" x="0.0" y="255" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bvw-Kr-5Oa" id="HbJ-Fm-O6K">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
@@ -123,7 +123,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHT-Cp-4md" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4034.4000000000001" y="35.532233883058474"/>
+            <point key="canvasLocation" x="4034.4000000000001" y="35.082458770614693"/>
         </scene>
         <!--DisplayBookViewController-->
         <scene sceneID="xzZ-Ut-lWg">
@@ -833,10 +833,28 @@
             </objects>
             <point key="canvasLocation" x="3116" y="1010"/>
         </scene>
+        <!--Add ToDB-->
+        <scene sceneID="576-37-Hf2">
+            <objects>
+                <viewController id="WZJ-4L-Ji7" customClass="AddToDB" customModule="BookCase_DataBase_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K6G-gx-oBx"/>
+                        <viewControllerLayoutGuide type="bottom" id="yK0-uD-oa3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vi9-bx-0UQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="liq-hm-aCT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3116" y="1800"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Qq-Fv-yYz"/>
-        <segue reference="1HV-zD-FVX"/>
+        <segue reference="6n3-66-uFk"/>
         <segue reference="LBO-s9-8v5"/>
+        <segue reference="1HV-zD-FVX"/>
     </inferredMetricsTieBreakers>
 </document>
