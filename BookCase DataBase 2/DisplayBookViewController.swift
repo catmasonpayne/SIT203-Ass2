@@ -17,10 +17,12 @@ class BookCollectionViewCell: UICollectionViewCell {
 }
 
 class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    // create an array for database information
     var DBArr = [[String]]()
+    // another array for those of similar genre
     var similarBooks = [[String]]()
     
+    // variables
     @IBOutlet weak var bookName: UILabel!
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var bookImage: UIImageView!
@@ -39,22 +41,21 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    
+    // these are information passed through the segue
     var bookNameFromPrev = String()
     var bookAuthorFromPrev = String()
     var genreString = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("here 1")
-        print("\(bookNameFromPrev) hellooooo")
+        
         let dataimport = GetDatabaseData()
         
         DBArr = dataimport.importDatabase()
         
         for i in 0...(DBArr.count - 1) {
             if bookNameFromPrev == DBArr[i][0] && bookAuthorFromPrev == DBArr[i][1] {
-                // set up data
+                // set up data to UI
                 bookName.text = bookNameFromPrev
                 authorName.text = bookAuthorFromPrev
                 bookImage.image = UIImage(named: DBArr[i][3])
@@ -119,19 +120,16 @@ class DisplayBookViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("you selected something1")
-        print(indexPath.item)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AnotherBookLeft" {
             let viewBookVC = segue.destination as? ViewBookViewController
-            print("preping for segue to left1")
+            
             guard let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) else {
                 return
             }
-            print("selected cell has been grabbed")
-            print("you selected \(similarBooks[indexPath.item][0])")
             viewBookVC?.bookNameFromPrev = similarBooks[indexPath.item][0]
             viewBookVC?.bookAuthorFromPrev = similarBooks[indexPath.item][1]
         }

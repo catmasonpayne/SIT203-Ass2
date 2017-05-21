@@ -18,10 +18,11 @@ class SimilarBookCollectionViewCell: UICollectionViewCell {
 
 
 class ViewBookViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    // empty database array
     var DBArr = [[String]]()
+    // array for similar books to fill the collection view
     var similarBooks = [[String]]()
-    
+    // variables to fill in!
     @IBOutlet weak var bookName: UILabel!
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var bookImage: UIImageView!
@@ -38,14 +39,14 @@ class ViewBookViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    // these were passed through the segue
     var bookNameFromPrev = String()
     var bookAuthorFromPrev = String()
     var genreString = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("here 1")
-        print("\(bookNameFromPrev) hellooooo")
+        
         let dataimport = GetDatabaseData()
         
         DBArr = dataimport.importDatabase()
